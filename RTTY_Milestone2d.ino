@@ -1,4 +1,3 @@
-
 // Global variables
 char transmission[] = "Hello World!";
 const int index = 12;
@@ -6,8 +5,7 @@ int data[index][8];
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
-  pinMode(11,INPUT);
+  //pinMode(11,INPUT);
   pinMode(9, OUTPUT);
   for(int i = 0; i < index; i++)
   {
@@ -22,8 +20,8 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  unsigned long duration;
-  float frequency;
+  //unsigned long duration;
+  //float frequency;
   
   for(int j = 0; j < index; j++)
   {
@@ -34,16 +32,16 @@ void loop() {
       if(data[j][k] == 1)
       {
         mark();
-        duration = pulseIn(11, LOW, 22);
-        frequency = 1 / (2000*((float)(duration)));
-        Serial.println(duration);
+        //duration = pulseIn(11, LOW, 22);
+        //frequency = 1 / (2000*((float)(duration)));
+        //Serial.println(duration);
       }
       else
       {
         space();
-        duration = pulseIn(11, LOW, 22);
-        frequency = 1 / (2000*((float)(duration)));
-        Serial.println(duration);
+        //duration = pulseIn(11, LOW, 22);
+        //frequency = 1 / (2000*((float)(duration)));
+        //Serial.println(duration);
       }
     }
     // Stop bit
