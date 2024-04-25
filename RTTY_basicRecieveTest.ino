@@ -28,14 +28,19 @@ while(d < 8)
     if(d = 7)
     {
       nextChar = convertToChar(dataFrame);
-      if(!(  (nextChar == ' ') || (nextChar == 'H') || (nextChar == 'e') || (nextChar == 'l') || (nextChar == 'o') || (nextChar == 'W') || (nextChar == 'r') || (nextChar == 'd') || (nextChar == '!') )  )
+      if((  (nextChar == ' ') || (nextChar == 'H') || (nextChar == 'e') || (nextChar == 'l') || (nextChar == 'o') || (nextChar == 'W') || (nextChar == 'r') || (nextChar == 'd') || (nextChar == '!') )  )
+      {
+        Serial.print(nextChar);
+        d = 0;
+        sentenceCounter++;
+        delay(66);
+      }
+      else
       {
         delay(22);
+        d = 0;
+        sentenceCounter = 0;
       }
-      Serial.print(nextChar);
-      d = 0;
-      sentenceCounter++;
-      
     }
     if(sentenceCounter >= 11)
     {
