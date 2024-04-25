@@ -4,6 +4,7 @@
   int sentenceCounter;
   char nextChar;
   int Vin;
+  char previousChar;
   
 void setup() {
   // put your setup code here, to run once:
@@ -32,7 +33,7 @@ while(d < 8)
       {
         Serial.print(nextChar);
         d = 0;
-        sentenceCounter++;
+        sentenceCounter = calculateSentenceCounter(nextChar, previousChar);
         delay(66);
       }
       else
@@ -42,11 +43,12 @@ while(d < 8)
         sentenceCounter = 0;
       }
     }
-    if(sentenceCounter >= 11)
+    if(sentenceCounter >= 12)
     {
       Serial.println();
       sentenceCounter = 0;
     }
+    previousChar = nextChar;
     delay(22);
   }
 }
@@ -69,5 +71,56 @@ char convertToChar(int data[])
   else
   {
     return 0;
+  }
+ }
+ int calculateSentenceCounter(char current, char former)
+ {
+  if(current == 'H')
+  {
+    sentenceCounter = 1;
+  }
+  if(current == 'e')
+  {
+    sentenceCounter = 2;
+  }
+  if((current == 'l') && (former == 'e'))
+  {
+    sentenceCounter = 3;
+  }
+  if((current == 'l') && (former == 'l'))
+  {
+    sentenceCounter = 4;
+  }
+  if(current == 'o')
+  {
+    sentenceCounter = 5;
+  }
+  if(current == ' ')
+  {
+    sentenceCounter = 6;
+  }
+  if(current == 'W')
+  {
+    sentenceCounter = 7;
+  }
+  if((current == 'o') && (former == 'W'))
+  {
+    sentenceCounter = 8;
+  }
+  if(current == 'r')
+  {
+    sentenceCounter = 9;
+  }
+  if((current == 'l') && (former == 'r'))
+  {
+    sentenceCounter = 10;
+  }
+  if(current == 'd')
+  {
+    sentenceCounter = 11;
+  }
+  if(current == '!')
+  {
+    sentenceCounter = 12;
   }
  }
