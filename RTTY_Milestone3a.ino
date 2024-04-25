@@ -1,6 +1,5 @@
 int inputPin = A1;
 int Vin = -1;
-int cutoff = 512;
 int packet[23];
 int dataFrame[8];
 int dataIn = 0;
@@ -13,9 +12,8 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   int sentenceCounter = 0;
-  int calculateDelay = 0;
   char nextChar = '';
-  int placeholder = 0;
+  int position = 0;
   while(dataIn < 23)
   {
     Vin = analogRead(inputPin);
@@ -30,25 +28,28 @@ void loop() {
     dataIn++;
     delay(22);
   }
-  placeholder = checkRecieved(packet);
+  position = checkRecieved(packet);
+  Serial.print(position);
+  Serial.println();
+  calculatedDelay(position);
   
-  //calculateDelay = 22;
-  //Need to calculate when to start the next sequencing here.
-  for(int d = 0; d < 8; d++)
+  int bitIn = -1;
+  while(d < 8)
   {
-
+    
+    bitI
     dataFrame[d] = recieveData();
     if(d = 7)
     {
       nextChar = convertToChar(dataFrame);
-      serial.print(nextChar);
+      Serial.print(nextChar);
       d = 0;
       sentenceCounter++;
       
     }
-    if(sentenceCounter = 11)
+    if(sentenceCounter >= 11)
     {
-      serial.println();
+      Serial.println();
       sentenceCounter = 0;
     }
     delay(22);
@@ -75,12 +76,9 @@ char convertToChar(int data[])
   letter = char(value);
   return letter;
  }
- void samplePacket()
- {
-  
- }
  int recieveData()
  {
+  cutoff = 512;
   Vin = analogRead(inputPin);
   if(Vin > cutoff)
   {
@@ -91,3 +89,8 @@ char convertToChar(int data[])
     return 0;
   }
  }
+void calculatedDelay(int position)
+{
+  calculateDelay = 22 *( (24 - (position)) % 10 );
+  delay(calculateDelay);
+}
