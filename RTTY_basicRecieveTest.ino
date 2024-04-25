@@ -3,6 +3,8 @@
   int d;
   int sentenceCounter;
   char nextChar;
+  int Vin;
+  
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
@@ -11,6 +13,7 @@ void setup() {
   d=0;
   sentenceCounter=0;
   nextChar = '.';
+  Vin = -1;
 }
 
 void loop() {
@@ -53,7 +56,7 @@ char convertToChar(int data[])
  int recieveData()
  {
   int cutoff = 512;
-  Vin = analogRead(inputPin);
+  Vin = analogRead(A1);
   if(Vin > cutoff)
   {
     return 1;
