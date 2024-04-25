@@ -37,8 +37,8 @@ void loop() {
   while(d < 8)
   {
     
-    bitI
-    dataFrame[d] = recieveData();
+    bitIn = recieveData();
+    dataFrame[d] = bitIn;
     if(d = 7)
     {
       nextChar = convertToChar(dataFrame);
